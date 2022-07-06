@@ -10,16 +10,18 @@ const TransactionsList = (props: TransactionsProps) => {
     return (
         <table>
             <thead>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Amount</th>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                </tr>
             </thead>
             <tbody>
-                {props.transactions.map(item => {
+                {props.transactions.map((item, index) => {
                     return (
-                        <tr>
-                            <td>{`${item.date.getDate()} ${item.date.getMonth() + 1} ${item.date.getFullYear()}`}</td>
+                        <tr key={index}>
+                            <td>{`${new Date(item.date).getDate()} ${new Date(item.date).getMonth() + 1} ${new Date(item.date).getFullYear()}`}</td>
                             <td>{item.note}</td>
                             <td>{item.category}</td>
                             <td>{item.amount}</td>

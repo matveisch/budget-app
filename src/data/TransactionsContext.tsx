@@ -1,10 +1,5 @@
 import React, {createContext, Dispatch, SetStateAction} from "react";
 
-import {ListOfTransactions} from "../interface/types/Types";
-
-interface TransactionsContextType {
-    transactions: ListOfTransactions["arrayOfObjects"];
-    setTransactions: Dispatch<SetStateAction<ListOfTransactions["arrayOfObjects"]>>;
-}
+import {ListOfTransactions, TransactionsContextType} from "../interface/types/Types";
 
 export const TransactionsContext = createContext<TransactionsContextType | null>(null);

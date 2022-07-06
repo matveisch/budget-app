@@ -1,11 +1,17 @@
+import {Dispatch, SetStateAction} from "react";
+
 export interface Transaction {
-    name: string;
     amount: number;
     note: string;
     category: string;
-    date: Date;
+    date: string;
 }
 
 export interface ListOfTransactions {
     arrayOfObjects: Transaction[];
+}
+
+export interface TransactionsContextType {
+    transactions: ListOfTransactions["arrayOfObjects"];
+    setTransactions: Dispatch<SetStateAction<ListOfTransactions["arrayOfObjects"]>>;
 }
