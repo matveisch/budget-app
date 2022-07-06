@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+
 import './App.css';
 
+import TransactionsList from "./components/TransactionsList/TransactionsList";
+import {TransactionsContext} from "./data/TransactionsContext";
+import {ListOfTransactions} from "./interface/types/Types";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [transactions, setTransactions] = useState<ListOfTransactions["arrayOfObjects"]>([
+        {
+            name: 'bread',
+            amount: 20,
+            note: 'bread from local store',
+            category: 'food',
+            date: new Date()
+        }
+    ]);
+
+    return (
+        <TransactionsContext.Provider value={{transactions, setTransactions}} >
+            <div className="App">
+                <header>
+                    <h1>Budget App</h1>
+                    <TransactionsList transactions={transactions}/>
+                </header>
+
+            </div>
+        </TransactionsContext.Provider>
+    );
 }
 
 export default App;
