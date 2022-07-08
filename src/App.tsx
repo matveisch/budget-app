@@ -30,8 +30,10 @@ function App() {
                         <h1>Budget App</h1>
                     </header>
                     <main>
+                        <h2>Transactions</h2>
                         <TransactionsList transactions={transactions}/>
                         <InputPopup />
+                        <h2>Current month data:</h2>
                         <DaysSum />
                     </main>
                 </div>
