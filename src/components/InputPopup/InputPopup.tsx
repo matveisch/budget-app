@@ -13,7 +13,7 @@ const InputPopup = () => {
     const [currentCategory, setCurrentCategory] = useState('');
 
     const [initialValues, setInitialValues] = useState({
-        id: 2,
+        id: transactions.length + 1,
         amount: 0,
         note: '',
         category: '',
@@ -51,8 +51,13 @@ const InputPopup = () => {
         };
 
         e.preventDefault();
-        saveData(initialValues);
-    }
+
+        if (initialValues.amount > 0 && initialValues.note.length > 0 && initialValues.date.length > 0 && initialValues.category.length > 0) {
+            saveData(initialValues);
+        } else {
+            console.log('fill all the inputs');
+        }
+    };
 
     return (
         <div id="input-popup">
