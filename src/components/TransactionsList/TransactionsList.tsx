@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './TransactionsList.css';
+
 import {ListOfTransactions} from "../../interface/types/Types";
 
 interface TransactionsProps {
@@ -8,7 +10,7 @@ interface TransactionsProps {
 
 const TransactionsList = (props: TransactionsProps) => {
     return (
-        <table>
+        <table id="transactions-list">
             <thead>
                 <tr>
                     <th>Date</th>

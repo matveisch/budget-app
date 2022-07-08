@@ -31,7 +31,6 @@ function App() {
                     </header>
                     <main>
                         <TransactionsList transactions={transactions}/>
-                        <button>+</button>
                         <InputPopup />
                         <DaysSum />
                     </main>
