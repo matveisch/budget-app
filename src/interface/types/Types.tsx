@@ -1,6 +1,7 @@
 import {Dispatch, SetStateAction} from "react";
 
 export interface Transaction {
+    id: number;
     amount: number;
     note: string;
     category: string;
@@ -14,4 +15,9 @@ export interface ListOfTransactions {
 export interface TransactionsContextType {
     transactions: ListOfTransactions["arrayOfObjects"];
     setTransactions: Dispatch<SetStateAction<ListOfTransactions["arrayOfObjects"]>>;
+}
+
+export interface CategoriesContextType {
+    categories: string[];
+    setCategories: Dispatch<SetStateAction<string[]>>;
 }

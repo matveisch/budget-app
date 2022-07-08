@@ -1,40 +1,79 @@
-import React, {useContext} from 'react';
-import {useFormik} from "formik";
+import React, {useContext, useEffect, useState} from 'react';
+
+import './InputPopup.css';
 
 import {TransactionsContext} from "../../data/TransactionsContext";
-import {Transaction, TransactionsContextType} from "../../interface/types/Types";
+import {CategoriesContextType, Transaction, TransactionsContextType} from "../../interface/types/Types";
+import Dropdown from "../../ui/Dropdown/Dropdown";
+import {CategoriesContext} from "../../data/CategoriesContext";
 
 const InputPopup = () => {
     const { transactions, setTransactions } = useContext(TransactionsContext) as TransactionsContextType;
+    const { categories, setCategories } = useContext(CategoriesContext) as CategoriesContextType;
+    const [currentCategory, setCurrentCategory] = useState('');
 
-    const formik = useFormik({
-        initialValues: {
-            amount: 0,
-            note: '',
-            category: '',
-            date: ''
-        },
-        onSubmit: values => {
-            saveData(values);
-        },
-    });
+    const [initialValues, setInitialValues] = useState({
+        id: 2,
+        amount: 0,
+        note: '',
+        category: '',
+        date: '',
+    })
 
-    const saveData = (values: Transaction) => {
-        const transactionsCopy = [...transactions];
-        transactionsCopy.push(values);
-        setTransactions(transactionsCopy);
+    const handleDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
+        setInitialValues(prevState => ({
+            ...prevState,
+            [id]: value
+        }));
+    };
+
+    useEffect(() => {
+        setInitialValues({...initialValues, ['id']: (transactions.length + 1)});
+    }, [transactions.length])
+
+    useEffect(() => {
+        setInitialValues({...initialValues, ['category']: currentCategory});
+    }, [currentCategory]);
+
+    // useEffect(() => {
+    //     console.log(transactions);
+    //     console.log(transactions.length);
+    // }, [transactions]);
+    //
+    // useEffect(() => {
+    //     console.log(initialValues);
+    // }, [initialValues]);
+
+    const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const saveData = (values: Transaction) => {
+            setTransactions(current => [...current, values]);
+        };
+
+        e.preventDefault();
+        saveData(initialValues);
     }
 
     return (
-        <div>
-            <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="date">Date:</label>
-                <input type="date" id="date" onChange={formik.handleChange} value={formik.values.date}/>
-                <label htmlFor="note">Description:</label>
-                <input type="text" id="note" onChange={formik.handleChange} value={formik.values.note}/>
-                <label htmlFor="amount">Amount:</label>
-                <input type="number" id="amount" onChange={formik.handleChange} value={formik.values.amount}/>
-                <button type="submit">Save</button>
+        <div id="input-popup">
+            <form id="input-popup__form">
+                <div className="option-container">
+                    <label htmlFor="date">Date:</label>
+                    <input type="date" id="date" onChange={handleDataChange} value={initialValues.date}/>
+                </div>
+                <div className="option-container">
+                    <label htmlFor="note">Description:</label>
+                    <input type="text" id="note" onChange={handleDataChange} value={initialValues.note}/>
+                </div>
+                <Dropdown placeholder={'Categories'}
+                          options={categories}
+                          currentCategory={currentCategory}
+                          setCurrentCategory={setCurrentCategory}/>
+                <div className="option-container">
+                    <label htmlFor="amount">Amount:</label>
+                    <input type="number" id="amount" onChange={handleDataChange} value={initialValues.amount}/>
+                </div>
+                <button type="submit" onClick={handleSave}>Save</button>
             </form>
         </div>
     );

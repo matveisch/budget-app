@@ -1,0 +1,11 @@
+.dropdown__options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: start;
+}
+.dropdown__options-container p {
+  margin: 0;
+}
+
+/*# sourceMappingURL=Dropdown.css.map */

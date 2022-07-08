@@ -6,10 +6,12 @@ import TransactionsList from "./components/TransactionsList/TransactionsList";
 import {TransactionsContext} from "./data/TransactionsContext";
 import {ListOfTransactions} from "./interface/types/Types";
 import InputPopup from "./components/InputPopup/InputPopup";
+import {CategoriesContext} from "./data/CategoriesContext";
 
 function App() {
     const [transactions, setTransactions] = useState<ListOfTransactions["arrayOfObjects"]>([
         {
+            id: 1,
             amount: 20,
             note: 'bread from local store',
             category: 'food',
@@ -17,18 +19,22 @@ function App() {
         }
     ]);
 
+    const [categories, setCategories] = useState(['food', 'shopping', 'groceries'])
+
     return (
         <TransactionsContext.Provider value={{transactions, setTransactions}} >
-            <div className="App">
-                <header>
-                    <h1>Budget App</h1>
-                </header>
-                <main>
-                    <TransactionsList transactions={transactions}/>
-                    <button>+</button>
-                    <InputPopup />
-                </main>
-            </div>
+            <CategoriesContext.Provider value={{categories, setCategories}} >
+                <div className="App">
+                    <header>
+                        <h1>Budget App</h1>
+                    </header>
+                    <main>
+                        <TransactionsList transactions={transactions}/>
+                        <button>+</button>
+                        <InputPopup />
+                    </main>
+                </div>
+            </CategoriesContext.Provider>
         </TransactionsContext.Provider>
     );
 }

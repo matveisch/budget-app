@@ -1,0 +1,9 @@
+#input-popup {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    width: 300px;
+  }
+}

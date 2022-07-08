@@ -1,5 +1,5 @@
-import React, {createContext, Dispatch, SetStateAction} from "react";
+import React, {createContext} from "react";
 
-import {ListOfTransactions, TransactionsContextType} from "../interface/types/Types";
+import {TransactionsContextType} from "../interface/types/Types";
 
 export const TransactionsContext = createContext<TransactionsContextType | null>(null);

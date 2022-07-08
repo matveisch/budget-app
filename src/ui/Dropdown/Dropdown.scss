@@ -1,0 +1,16 @@
+.dropdown {
+  &__header {
+
+  }
+
+  &__options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
+
+    p {
+      margin: 0;
+    }
+  }
+}
