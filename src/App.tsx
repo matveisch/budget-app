@@ -4,9 +4,10 @@ import './App.css';
 
 import TransactionsList from "./components/TransactionsList/TransactionsList";
 import {TransactionsContext} from "./data/TransactionsContext";
-import {ListOfTransactions} from "./interface/types/Types";
+import {ListOfTransactions, Transaction} from "./interface/types/Types";
 import InputPopup from "./components/InputPopup/InputPopup";
 import {CategoriesContext} from "./data/CategoriesContext";
+import DaysSum from "./components/DaysSum/DaysSum";
 
 function App() {
     const [transactions, setTransactions] = useState<ListOfTransactions["arrayOfObjects"]>([
@@ -32,6 +33,7 @@ function App() {
                         <TransactionsList transactions={transactions}/>
                         <button>+</button>
                         <InputPopup />
+                        <DaysSum />
                     </main>
                 </div>
             </CategoriesContext.Provider>

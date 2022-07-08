@@ -28,10 +28,12 @@ const InputPopup = () => {
         }));
     };
 
+    // updating transaction id
     useEffect(() => {
         setInitialValues({...initialValues, ['id']: (transactions.length + 1)});
     }, [transactions.length])
 
+    // updating transaction category
     useEffect(() => {
         setInitialValues({...initialValues, ['category']: currentCategory});
     }, [currentCategory]);
@@ -52,6 +54,7 @@ const InputPopup = () => {
 
         e.preventDefault();
 
+        // check if user filled all the inputs
         if (initialValues.amount > 0 && initialValues.note.length > 0 && initialValues.date.length > 0 && initialValues.category.length > 0) {
             saveData(initialValues);
         } else {

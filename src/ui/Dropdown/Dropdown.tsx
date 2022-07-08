@@ -1,6 +1,7 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 
 import './Dropdown.css';
+import arrow from '../../data/images/arrow-down-sign-to-navigate.png';
 
 interface DropdownProps {
     placeholder: string;
@@ -19,7 +20,10 @@ const Dropdown = (props: DropdownProps) => {
 
     return (
         <div className="dropdown">
-            <div className="dropdown__header" onClick={() => setDropdownToggle(!dropdownToggle)}>{props.currentCategory.length > 0 ? props.currentCategory : props.placeholder}</div>
+            <div className="dropdown__header" onClick={() => setDropdownToggle(!dropdownToggle)}>
+                {props.currentCategory.length > 0 ? props.currentCategory : props.placeholder}
+                <img src={arrow} alt="" style={dropdownToggle ? {transform: 'rotate(180deg)'} : undefined}/>
+            </div>
             <div className="dropdown__options-container"
                  style={dropdownToggle ? {display: 'flex'} : {display: 'none'}}>{props.options.map((option, index) => {
                 return (
