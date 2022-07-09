@@ -20,7 +20,8 @@ function App() {
         }
     ]);
 
-    const [categories, setCategories] = useState(['food', 'shopping', 'groceries'])
+    const [categories, setCategories] = useState(['food', 'shopping', 'groceries']);
+    const [toggleInputPopup, setToggleInputPopup] = useState(false);
 
     return (
         <TransactionsContext.Provider value={{transactions, setTransactions}} >
@@ -31,8 +32,8 @@ function App() {
                     </header>
                     <main>
                         <h2>Transactions</h2>
-                        <TransactionsList transactions={transactions}/>
-                        <InputPopup />
+                        <TransactionsList transactions={transactions} setToggleInputPopup={setToggleInputPopup}/>
+                        <InputPopup toggleInputPopup={toggleInputPopup} setToggleInputPopup={setToggleInputPopup}/>
                         <h2>Current month data:</h2>
                         <DaysSum />
                     </main>

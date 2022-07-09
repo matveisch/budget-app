@@ -1,3 +1,6 @@
+#input-popup {
+  background-color: white;
+}
 #input-popup__form {
   display: flex;
   flex-direction: column;

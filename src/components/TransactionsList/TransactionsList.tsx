@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {Dispatch, SetStateAction, useContext} from 'react';
 
 import './TransactionsList.css';
 
@@ -7,6 +7,7 @@ import {TransactionsContext} from "../../data/TransactionsContext";
 
 interface TransactionsProps {
     transactions: ListOfTransactions["arrayOfObjects"];
+    setToggleInputPopup: Dispatch<SetStateAction<boolean>>;
 }
 
 const TransactionsList = (props: TransactionsProps) => {
@@ -40,6 +41,11 @@ const TransactionsList = (props: TransactionsProps) => {
                     )
                 })}
             </tbody>
+            <tfoot>
+                <tr>
+                    <td><button onClick={() => props.setToggleInputPopup(true)}>New transaction</button></td>
+                </tr>
+            </tfoot>
         </table>
     );
 };

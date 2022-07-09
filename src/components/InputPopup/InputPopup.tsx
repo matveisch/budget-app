@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {Dispatch, SetStateAction, useContext, useEffect, useState} from 'react';
 
 import './InputPopup.css';
 
@@ -7,7 +7,12 @@ import {CategoriesContextType, Transaction, TransactionsContextType} from "../..
 import Dropdown from "../../ui/Dropdown/Dropdown";
 import {CategoriesContext} from "../../data/CategoriesContext";
 
-const InputPopup = () => {
+interface InputPopupProps {
+    toggleInputPopup: boolean;
+    setToggleInputPopup: Dispatch<SetStateAction<boolean>>;
+}
+
+const InputPopup = (props: InputPopupProps) => {
     const { transactions, setTransactions } = useContext(TransactionsContext) as TransactionsContextType;
     const { categories, setCategories } = useContext(CategoriesContext) as CategoriesContextType;
     const [currentCategory, setCurrentCategory] = useState('');
@@ -38,15 +43,6 @@ const InputPopup = () => {
         setInitialValues({...initialValues, ['category']: currentCategory});
     }, [currentCategory]);
 
-    // useEffect(() => {
-    //     console.log(transactions);
-    //     console.log(transactions.length);
-    // }, [transactions]);
-    //
-    // useEffect(() => {
-    //     console.log(initialValues);
-    // }, [initialValues]);
-
     const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
         const saveData = (values: Transaction) => {
             setTransactions(current => [...current, values]);
@@ -57,13 +53,14 @@ const InputPopup = () => {
         // check if user filled all the inputs
         if (initialValues.amount > 0 && initialValues.note.length > 0 && initialValues.date.length > 0 && initialValues.category.length > 0) {
             saveData(initialValues);
+            props.setToggleInputPopup(false);
         } else {
             console.log('fill all the inputs');
         }
     };
 
     return (
-        <div id="input-popup">
+        <div id="input-popup" style={props.toggleInputPopup ? {display: 'block', position: 'absolute'} : {display: 'none'}}>
             <form id="input-popup__form">
                 <div className="option-container">
                     <label htmlFor="date">Date:</label>
