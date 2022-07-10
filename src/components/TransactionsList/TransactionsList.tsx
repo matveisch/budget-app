@@ -1,9 +1,8 @@
-import React, {Dispatch, SetStateAction, useContext, useState} from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 
 import './TransactionsList.css';
 
-import {ListOfTransactions, Transaction, TransactionsContextType} from "../../interface/types/Types";
-import {TransactionsContext} from "../../data/TransactionsContext";
+import {ListOfTransactions, Transaction} from "../../interface/types/Types";
 import SingleTransaction from "../SingleTransaction/SingleTransaction";
 
 interface TransactionsProps {
@@ -23,7 +22,7 @@ const TransactionsList = (props: TransactionsProps) => {
                 </tr>
             </thead>
             <tbody>
-                {props.transactions.map((item, index) => {
+                {props.transactions.map((item: Transaction, index: number) => {
                     return (
                         <SingleTransaction id={item.id} amount={item.amount} note={item.note} category={item.category} date={item.date} key={index}/>
                     )
