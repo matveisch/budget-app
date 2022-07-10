@@ -1,9 +1,13 @@
 import React, {useContext, useState} from 'react';
-import {Transaction, TransactionsContextType} from "../../interface/types/Types";
+import {CategoriesContextType, Transaction, TransactionsContextType} from "../../interface/types/Types";
 import {TransactionsContext} from "../../data/TransactionsContext";
+import Dropdown from "../../ui/Dropdown/Dropdown";
+import {CategoriesContext} from "../../data/CategoriesContext";
 
 const SingleTransaction = (item: Transaction, index: number) => {
     const { transactions, setTransactions } = useContext(TransactionsContext) as TransactionsContextType;
+    const { categories } = useContext(CategoriesContext) as CategoriesContextType;
+    const [currentCategory, setCurrentCategory] = useState('');
     const [editMode, setEditMode] = useState(false);
 
     const [itemValues, setItemValues] = useState<Transaction>({
@@ -34,7 +38,7 @@ const SingleTransaction = (item: Transaction, index: number) => {
                     id: itemValues.id,
                     amount: itemValues.amount,
                     note: itemValues.note,
-                    category: itemValues.category,
+                    category: currentCategory,
                     date: itemValues.date,
                 }
             }
@@ -52,7 +56,7 @@ const SingleTransaction = (item: Transaction, index: number) => {
         <tr key={index} id={String(item.id)}>
             <td>{editMode ? <input type="date" value={itemValues.date} id="date" onChange={handleDataChange}/> : `${new Date(item.date).getDate()} ${new Date(item.date).getMonth() + 1} ${new Date(item.date).getFullYear()}`}</td>
             <td>{editMode ? <input type="text" value={itemValues.note} id="note" onChange={handleDataChange}/> : item.note}</td>
-            <td>{item.category}</td>
+            <td>{editMode ? <Dropdown placeholder={'Categories'} options={categories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/> : item.category}</td>
             <td>{editMode ? <input type="number" value={itemValues.amount} id="amount" onChange={handleDataChange}/> : item.amount}</td>
             <td><button onClick={handleEdit}>{editMode ? 'save' : 'edit'}</button></td>
             <td><button onClick={() => deleteTransaction(item.id)}>delete</button></td>
