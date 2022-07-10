@@ -31,11 +31,15 @@ function App() {
                         <h1>Budget App</h1>
                     </header>
                     <main>
-                        <h2>Transactions</h2>
-                        <TransactionsList transactions={transactions} setToggleInputPopup={setToggleInputPopup}/>
-                        <InputPopup toggleInputPopup={toggleInputPopup} setToggleInputPopup={setToggleInputPopup}/>
-                        <h2>Current month data:</h2>
-                        <DaysSum />
+                        <div id="transactions">
+                            <h2>Transactions</h2>
+                            <TransactionsList transactions={transactions} setToggleInputPopup={setToggleInputPopup}/>
+                            <InputPopup toggleInputPopup={toggleInputPopup} setToggleInputPopup={setToggleInputPopup}/>
+                        </div>
+                        <div id="month-data">
+                            <h2>Current month data:</h2>
+                            <DaysSum />
+                        </div>
                     </main>
                 </div>
             </CategoriesContext.Provider>

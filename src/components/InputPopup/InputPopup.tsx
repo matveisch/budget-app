@@ -78,7 +78,10 @@ const InputPopup = (props: InputPopupProps) => {
                     <label htmlFor="amount">Amount:</label>
                     <input type="number" id="amount" onChange={handleDataChange} value={initialValues.amount}/>
                 </div>
-                <button type="submit" onClick={handleSave}>Save</button>
+                <div className="buttons">
+                    <button type="submit" onClick={handleSave}>Save</button>
+                    <button onClick={(e) => {e.preventDefault(); props.setToggleInputPopup(false);}}>Close</button>
+                </div>
             </form>
         </div>
     );

@@ -15,5 +15,10 @@
   display: flex;
   gap: 10px;
 }
+#input-popup__form .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 /*# sourceMappingURL=InputPopup.css.map */
