@@ -19,8 +19,6 @@ const TransactionsList = (props: TransactionsProps) => {
                     <th className='py-3 px-6'>Description</th>
                     <th className='py-3 px-6'>Category</th>
                     <th className='py-3 px-6'>Amount</th>
-                    <th className='py-3 px-6'></th>
-                    <th className='py-3 px-6'></th>
                 </tr>
             </thead>
             <tbody>
