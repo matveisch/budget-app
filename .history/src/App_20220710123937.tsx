@@ -4,7 +4,7 @@ import './App.css';
 
 import TransactionsList from "./components/TransactionsList/TransactionsList";
 import {TransactionsContext} from "./data/TransactionsContext";
-import {ListOfTransactions} from "./interface/types/Types";
+import {ListOfTransactions, Transaction} from "./interface/types/Types";
 import InputPopup from "./components/InputPopup/InputPopup";
 import {CategoriesContext} from "./data/CategoriesContext";
 import DaysSum from "./components/DaysSum/DaysSum";

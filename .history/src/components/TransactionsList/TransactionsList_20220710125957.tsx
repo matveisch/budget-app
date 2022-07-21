@@ -12,7 +12,7 @@ interface TransactionsProps {
 
 const TransactionsList = (props: TransactionsProps) => {
     return (
-        <table id="transactions-list" className='border-collapse border border-slate-500'>
+        <table id="transactions-list">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -22,7 +22,7 @@ const TransactionsList = (props: TransactionsProps) => {
                 </tr>
             </thead>
             <tbody>
-                {props.transactions.filter(transaction => new Date(transaction.date).getMonth() === new Date().getMonth()).map((item: Transaction, index: number) => {
+                {props.transactions.map((item: Transaction, index: number) => {
                     return (
                         <SingleTransaction id={item.id} amount={item.amount} note={item.note} category={item.category} date={item.date} key={index}/>
                     )

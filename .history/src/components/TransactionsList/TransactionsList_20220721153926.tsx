@@ -12,7 +12,7 @@ interface TransactionsProps {
 
 const TransactionsList = (props: TransactionsProps) => {
     return (
-        <table id="transactions-list" className='border-collapse border border-slate-500'>
+        <table id="transactions-list">
             <thead>
                 <tr>
                     <th>Date</th>

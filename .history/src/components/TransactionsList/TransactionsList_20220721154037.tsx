@@ -11,8 +11,10 @@ interface TransactionsProps {
 }
 
 const TransactionsList = (props: TransactionsProps) => {
+    if (!props.transactions) return <h1>no transactions</h1>
+
     return (
-        <table id="transactions-list" className='border-collapse border border-slate-500'>
+        <table id="transactions-list">
             <thead>
                 <tr>
                     <th>Date</th>
